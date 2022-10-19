@@ -10,6 +10,26 @@ html, body {
     padding: 30px 0;
 }
 
+#main-container .actions-columns {
+    display: flex;
+
+    gap: 15px;
+}
+
+.title-column {
+    width: 100%;
+}
+
+.title-column a {
+    color: #212529;
+
+    text-decoration: none;
+}
+
+.title-column a:hover {
+    text-decoration: underline;
+}
+
 footer {
     align-items: center;
 
