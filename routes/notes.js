@@ -45,4 +45,14 @@ router.get("/:id", async (req, res) => {
 
 });
 
+router.get("/edit/:id", async(req, res) => {
+
+    const id = new ObjectId(req.params.id);
+
+    const note = await db.getdb().db().collection("notes").findOne({ _id: id });
+
+    res.render("notes/edit", { note });
+
+});
+
 module.exports = router;

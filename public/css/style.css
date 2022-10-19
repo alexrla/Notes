@@ -45,3 +45,17 @@ footer {
 
     width: 100%;
 }
+
+@media(max-width: 425px) {
+    #main-container {
+        padding: 30px;
+    }
+
+    #main-container td {
+        height: 80px;
+    }
+
+    #main-container .btn {
+        height: 40px;
+    }
+}
