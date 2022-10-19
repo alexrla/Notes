@@ -55,4 +55,19 @@ router.get("/edit/:id", async(req, res) => {
 
 });
 
+router.post("/update", (req, res) => {
+
+    const title = req.body.title;
+    const description = req.body.description;
+    const id = new ObjectId(req.body.id);
+
+    db.getdb()
+        .db()
+        .collection("notes")
+        .updateOne({ _id: id }, { $set: { title, description } });
+    
+    res.redirect("/");
+
+});
+
 module.exports = router;
