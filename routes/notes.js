@@ -25,4 +25,14 @@ router.post("/", (req, res) => {
 
 })
 
+router.post("/delete", (req, res) => {
+
+    const id = new ObjectId(req.body.id);
+
+    db.getdb().db().collection("notes").deleteOne({ _id: id });
+
+    res.redirect(301, "/");
+
+})
+
 module.exports = router;
