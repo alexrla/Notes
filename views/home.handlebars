@@ -9,18 +9,26 @@
         </tr>
     </thead>
     <tbody>
-        <tr>
-            <th scope="row">01</th>
-            <td class="title-column">
-                <a href="#">Minha tarefa</a>
-            </td>
-            <td class="actions-columns">
-                <a href="#" class="btn btn-warning">Editar</a>
-                <form action="notes/delete" method="POST">
-                    <input type="hidden" name="id" value="01">
-                    <input type="submit" class="btn btn-danger" value="Remover">
-                </form>
-            </td>
-        </tr>
+        {{#each notes}}
+            <tr>
+                <th scope="row">{{ @index }}</th>
+                <td class="title-column">
+                    <a href="notes/{{ this._id }}">{{ this.title }}</a>
+                </td>
+                <td class="actions-columns">
+                    <a href="notes/edit/{{ this._id }}" class="btn btn-primary">Editar</a>
+                    <form action="notes/delete" method="POST">
+                        <input type="hidden" name="id" value="{{ this._id }}">
+                        <input type="submit" class="btn btn-danger" value="Remover">
+                    </form>
+                </td>
+            </tr>
+        {{else}}
+            <p>
+                Não há a notas no sistema ainda,
+                <a href="notes">clique aqui</a>
+                para adicionar.
+            </p>
+        {{/each}}
     </tbody>
 </table>

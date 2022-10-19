@@ -18,9 +18,15 @@ app.use(express.static("public"));
 
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.get("/", (req, res) => {
+app.get("/", async (req, res) => {
 
-    res.render("home");
+    const notes = await db.getdb()
+                            .db()
+                            .collection("notes")
+                            .find({})
+                            .toArray();
+    
+    res.render("home", { notes });
 
 });
 
