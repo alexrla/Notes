@@ -23,7 +23,7 @@ router.post("/", (req, res) => {
 
     res.redirect(301, "/");
 
-})
+});
 
 router.post("/delete", (req, res) => {
 
@@ -33,6 +33,16 @@ router.post("/delete", (req, res) => {
 
     res.redirect(301, "/");
 
-})
+});
+
+router.get("/:id", async (req, res) => {
+
+    const id = new ObjectId(req.params.id);
+
+    const note = await db.getdb().db().collection("notes").findOne({ _id: id });
+
+    res.render("notes/details", { note });
+
+});
 
 module.exports = router;
