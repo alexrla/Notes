@@ -1,3 +1,5 @@
+const db = require("./db/connection");
+
 const express = require("express");
 const exphbs = require("express-handlebars");
 const bodyParser = require("body-parser");
@@ -14,6 +16,8 @@ app.set("view engine", "handlebars");
 
 app.use(express.static("public"));
 
+app.use(bodyParser.urlencoded({ extended: true }));
+
 app.get("/", (req, res) => {
 
     res.render("home");
@@ -22,4 +26,11 @@ app.get("/", (req, res) => {
 
 app.use("/notes", notesRoutes);
 
-app.listen(process.env.PORT, console.log("App funcionando!"));
+db.initDb((error, db) => {
+
+    if(error) console.log(error);
+    else {
+        console.log("Conexão realizada com sucesso!");
+        app.listen(process.env.PORT, console.log("App funcionando!"));
+    }
+});
